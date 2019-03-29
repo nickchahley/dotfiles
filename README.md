@@ -1,2 +1,3 @@
 # dotfiles
-Elegantly disheveled.
+
+Personal config.

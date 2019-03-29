@@ -1,0 +1,234 @@
+# vim:filetype=i3config
+# i3-gaps config file
+
+# Font is required
+font pango:Hack, FontAwesome 18
+
+### Colors
+
+# class        border  backgr. text    indicator child_border
+#client.focused #d64937
+client.focused  #555555 #555555 #ffffff #ff9900     #CC0000
+
+### Gaps
+
+# Gaps will only work correctly if window titlebars are disabled
+for_window [class="^.*"] border pixel 4
+
+set $default_gaps_inner 8
+set $default_gaps_outer 0
+gaps inner $default_gaps_inner
+gaps outer $default_gaps_outer
+
+### Misc vars
+
+# For bindings with altgr you need to use the name of the ISO_Level3 key it
+# produces (eg $altgr+multiply, not $altgr+plus). Find out with 
+# `xev -event keyboard`
+set $altgr Mod5
+set $mod Mod4
+set $alt Mod1
+set $editor terminator
+
+set $resize_px 50
+set $move_px 50px
+
+# Focus on click
+focus_follows_mouse no
+
+### Keybindings
+
+set $left n
+set $down e
+set $up i
+set $right o
+
+bindsym $mod+q kill
+
+bindsym $mod+$left focus left
+bindsym $mod+$right focus right
+bindsym $mod+$up focus up
+bindsym $mod+$down focus down
+
+bindsym $mod+Shift+$left move left $move_px 
+bindsym $mod+Shift+$down move down $move_px 
+bindsym $mod+Shift+$up move up $move_px
+bindsym $mod+Shift+$right move right $move_px
+
+# Move floating container to the center of all outputs
+bindsym $mod+Shift+c move absolute position center
+
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+bindsym $mod+f fullscreen
+bindsym $mod+Shift+f fullscreen global
+
+# Change container layout (stacked, tabbed, toggle split [default])
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+p layout toggle split
+bindsym $mod+w layout toggle 
+
+bindsym $mod+a focus parent
+bindsym $mod+Shift+a focus child
+#bindsym $alt+Tab toggle focus
+
+# Floating Windows
+
+# Toggle tiling / floating 
+bindsym $mod+Shift+space floating toggle
+
+# Change focus b/t tiling / floating windows
+bindsym $alt+space focus mode_toggle
+
+# Hold alt to move (LMB) and resize (RMB) floating windows
+floating_modifier $alt
+
+# Make floating window omnipresent ("stick to the glass")
+bindsym $mod+Shift+s sticky toggle
+
+# Put YouTube into fullscreen and execute this for media mode.
+# On firefox this requires setting full-screen-api.ignore-widgets: true in
+# about:config. This restricts firefox fullscreen to its container. Side effect
+# this includes F11, which is actually neat since it lets me get a poor man's
+# app mode (hide url/tabs) which I've been missing coming from chrome.
+bindsym $mod+y fullscreen disable; floating enable; resize set 1200 800; sticky enable
+bindsym $mod+Shift+y fullscreen disable; floating disable; sticky disable
+
+# Scratchpad 
+
+# Move currently focused window to the (next?) scratchpad 
+# Can use 'floating toggle' to move window from scratchpad back to workspace
+bindsym $mod+minus move scratchpad
+#bindsym $altgr+endash move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+plus scratchpad show
+bindsym $altgr+multiply scratchpad show
+#bindsym $altgr+questiondown scratchpad show
+bindsym $altgr+asciitilde scratchpad show
+#bindsym $altgr+backslash scratchpad show
+
+
+# Workspaces 
+
+# Define names for default workspaces for which we configure key bindings later
+# We use variables to avoid repeating the names in multiple places
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# Switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+bracketleft workspace prev
+bindsym $mod+bracketright workspace next
+#bindsym $mod+guillemotleft workspace prev
+#bindsym $mod+guillemotright workspace next
+
+
+# Move focused container to workspace
+# This does not switch to that workspace, but could chain cmd w/ ;
+bindsym $mod+Shift+1 move container to workspace number $ws1; workspace $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2; workspace $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3; workspace $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4; workspace $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5; workspace $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6; workspace $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7; workspace $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8; workspace $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9; workspace $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10; workspace $ws10
+
+# Media keys
+bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.local/bin/vol d 5
+bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.local/bin/vol i 5
+bindsym XF86AudioMute exec --no-startup-id $HOME/.local/bin/vol t
+
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -5
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +5
+
+# Re* and exit i3
+bindsym $mod+F11 reload
+bindsym $mod+$alt+F11 restart
+bindsym $alt+Control+l exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# Screenshots
+# not sure why --release is necessary but it seems to be
+bindsym --release Control+$alt+4 exec "scrot --select ~/Pictures/Screenshots/%Y-%m-%d-%H%M%S_scrot.png"
+bindsym --release Print exec "scrot ~/Pictures/Screenshots/%Y-%m-%d-%H%M%S_scrot.png"
+bindsym --release $alt+Print exec "scrot --delay ~/Pictures/Screenshots/%Y-%m-%d-%H%M%S_scrot.png"
+
+### Launchers
+
+# Path is specific to i3 which uses /bin/sh as default val for shell invocation
+# Use zsh -c so that rofi can see zsh path variables << doesn't seem to work
+# Or, have /bin/sh read zsh path
+bindsym $mod+space exec --no-startup-id "rofi -combi-modi drun,window -modi combi,run,window -show combi"
+bindsym $mod+d exec --no-startup-id "rofi -combi-modi run,window,drun -modi combi,run,window -show combi"
+
+bindsym $mod+Return exec --no-startup-id terminator
+bindsym $mod+b exec --no-startup-id firefox
+bindsym $mod+x exec --no-startup-id thunar
+
+### Modes
+
+mode "resize" {
+	# Resize window (you can also use the mouse for that)
+	# These bindings trigger as soon as you enter the resize mode
+	# Grow
+	bindsym $left       resize grow left $resize_px px or $resize_px ppt
+	bindsym $down       resize grow down $resize_px px or $resize_px ppt
+	bindsym $up         resize grow up $resize_px px or $resize_px ppt
+	bindsym $right      resize grow right $resize_px px or $resize_px ppt
+
+	# Shrink
+	bindsym Shift+$left  resize shrink left $resize_px px or $resize_px ppt
+	bindsym Shift+$down  resize shrink down $resize_px px or $resize_px ppt
+	bindsym Shift+$up    resize shrink up $resize_px px or $resize_px ppt
+	bindsym Shift+$right resize shrink right $resize_px px or $resize_px ppt
+
+	# back to normal: Enter or Escape or $alt+r
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+	bindsym $mod+Shift+r mode "default"
+}
+
+bindsym $mod+Shift+r mode "resize"
+
+### Autostart
+# Which of these should go into .xinitrc? (which should be wm independent?)
+
+# This first so there's no weird 3s w/o background
+exec --no-startup-id /home/nikoli/.fehbg &
+
+# compositor
+exec --no-startup-id sleep 1; manjaro-compositor --start 
+
+# Read ~/.config/polybar/sessions/i3-sessionfile
+exec --no-startup-id sleep 1; manjaro-polybar-session 
+
+# Touchscreen gestures
+exec --no-startup-id touchegg 
+
+# Onboard is hidden on startup (configured with onboard-settings)
+exec --no-startup-id onboard 
+

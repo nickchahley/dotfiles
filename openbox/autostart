@@ -1,0 +1,33 @@
+# Run these programs when openbox starts, typically this file is located at 
+# ~/.config/openbox/autostart
+
+# launch thunar in daemon mode
+sleep 1; thunar --daemon &
+
+# compositor, bad time on laptop
+#sleep 1; manjaro-compositor --start &
+
+# Set background
+sh ~/.fehbg &
+
+# Set workspace layout
+~/.config/openbox/setlayout 0 3 3 0 &
+
+#sleep 1; manjaro-tint2-session &
+
+manjaro-conky-session &
+
+# Openbox autostart 
+# This is a python script that reads from ~/.config/ob-autostart/config
+# I think this starts polybar
+sleep 1; ob-autostart -d &
+
+# PolicyKit authentication
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# Side shortcuts for file managers
+xdg-user-dirs-gtk-update &
+
+# Set keyboard layout
+setxkbmap -layout us -variant colemak -option "caps:escape" &
+
