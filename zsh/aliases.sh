@@ -1,12 +1,14 @@
 ### nikoli shell aliases
 
+alias runs='cd /home/nikoli/cbsdeep/runs/denoising2D'
+alias csb='cd "/home/nikoli/.miniconda3/envs/cbsdeep/lib/python3.6/site-packages/csbdeep"'
 #alias thefuck='fuck'
 alias tb='tensorboard --logdir'
 
 # Muscle memory is still vim
 alias vim='nvim'
 
-alias pro='"/home/nikoli/Clone/McGill/Courses/COMP 551/Project 3"'
+alias p='"/home/nikoli/Clone/McGill/Courses/COMP 551/Project 4/COMP551-MP4.git"'
 alias slab='cd "/run/media/nikoli/Slab"'
 alias anno='"/home/nikoli/OneDrive/McGill/DJGroup/CTC/data/master/2018-06-18 - Received CTC Images/2016-12-15 - Sample #8122/A - low porosity 8 um filter"'
 alias overlay='cd "/home/nikoli/Clone/McGill/DJGroup/CTC/ctc-scripts/git/imagej-overlay-annotation"'
