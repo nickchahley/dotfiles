@@ -73,14 +73,14 @@
 " }}}
 " Words forward/backward {{{
 	" l/L = back word/WORD
-	" u/U = forward word/WORD
-	" y/Y = forward end of word/WORD
+	" u/U = forward end of word/WORD
+	" y/Y = forward word/WORD
 	nnoremap l b|xnoremap l b|onoremap l b|
 	nnoremap L B|xnoremap L B|onoremap L B|
-	nnoremap u w|xnoremap u w|onoremap u w|
-	nnoremap U W|xnoremap U W|onoremap U W|
-	nnoremap y e|xnoremap y e|onoremap y e|
-	nnoremap Y E|xnoremap Y E|onoremap Y E|
+	nnoremap u e|xnoremap u e|onoremap u e|
+	nnoremap U E|xnoremap U E|onoremap U E|
+	nnoremap y w|xnoremap y w|onoremap y w|
+	nnoremap Y W|xnoremap Y W|onoremap Y W|
 	cnoremap <C-l> <C-Left> 
 	cnoremap <C-y> <C-Right>
 " }}}
