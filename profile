@@ -28,3 +28,9 @@ setxkbmap -layout us -variant colemak -option "caps:escape"
 
 # Start dropbox service
 dropbox &
+
+# PolicyKit authentication, so can launch things like gparted from rofi
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# Side shortcuts for file managers
+xdg-user-dirs-gtk-update &
