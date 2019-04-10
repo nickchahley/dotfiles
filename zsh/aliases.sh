@@ -1,5 +1,6 @@
 ### nikoli shell aliases
 
+alias prename='perl-rename'
 alias runs='cd /home/nikoli/cbsdeep/runs/denoising2D'
 alias csb='cd "/home/nikoli/.miniconda3/envs/cbsdeep/lib/python3.6/site-packages/csbdeep"'
 #alias thefuck='fuck'
@@ -42,7 +43,7 @@ alias fijid='"/home/nikoli/OneDrive/FIJI/Fiji.app/macros"'
 # }}}
 # Conda {{{
 	alias sa='source activate'
-	alias sd='source deactivate'
+	alias sd='conda deactivate'
 
 	alias cni='conda install'
 	alias cniy='conda install -y'
@@ -190,6 +191,7 @@ alias pablue='paswitch blue'
 	alias ci3='nvim ~/.config/i3/config'
 # }}}
 # Shell convinience aliases -- isn't that what these this whole file is? {{{
+	alias tarzip='tar -czvf'
 	alias sudoe='sudo -E'
 	alias sudoedit='sudo -E nvim'
 	alias cp='cp -v'
