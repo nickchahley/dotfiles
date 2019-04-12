@@ -326,17 +326,6 @@ endif
 	set undodir=~/.vim-backundoswap/undofiles
 	set dir=~/.vim-backundoswap/swapfiles
 " }}}
-" {{{ Functions 
-	" Open a searchable buffer w/ mappings: \m 
-	source $VIMHOME/functions/ShowMaps.vim
-
-	" Open a searchable buffer w/ the output of :let
-	source $VIMHOME/functions/ShowVars.vim
-
-	" Swap position of two windows: mw Mark, pw Do
-	source $VIMHOME/functions/WindowSwap.vim
-
-" }}}
 " Line Return {{{
 	augroup line_return
 		au!

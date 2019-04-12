@@ -1,5 +1,6 @@
 ### nikoli shell aliases
 
+alias pubip='curl ifconfig.me'
 alias prename='perl-rename'
 alias runs='cd /home/nikoli/cbsdeep/runs/denoising2D'
 alias csb='cd "/home/nikoli/.miniconda3/envs/cbsdeep/lib/python3.6/site-packages/csbdeep"'
@@ -226,9 +227,9 @@ alias pablue='paswitch blue'
 		alias pms='sudo pacman -S'
 		alias pmsy='sudo pacman -S --noconfirm'
 		# Update/upgrade
-		alias pmsyy='sudo pacman -Syy' # update database (apud)
-		alias pmsud='sudo pacman -Syyu'  # "sync database"
-		alias pmsu='sudo pacman -Syyu'   # "sync update" (apug)
+		alias pmsyy='sudo pacman -Syy'  # update database (apud)
+		alias pmsud='sudo pacman -Syyu' # "sync database"
+		alias pmsu='sudo pacman -Syyu'  # "sync update" (apug)
 		# -R : remove 
 		alias pmr='sudo pacman -R'      # leave dependencies installed
 		alias pmrs='sudo pacman -Rs'    # rm dependencies
@@ -240,9 +241,9 @@ alias pablue='paswitch blue'
 		alias pmq='sudo pacman --query --search'
 	# }}}
 	# yay : Arch User Repository package manager {{{
-		alias yays='yay -S'   # sync AUR package
-		alias yaysu='yay -Syu'   # update database and upgrade
-		alias yayr='yay -Rns' # remove AUR package
+		alias yays='yay -S'    # sync AUR package
+		alias yaysu='yay -Syu' # update database and upgrade
+		alias yayr='yay -Rns'  # remove AUR package
 	# }}}
 	# Ubuntu/Debian --- out of use {{{
 	# Apt {{{

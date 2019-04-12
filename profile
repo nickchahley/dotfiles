@@ -34,3 +34,4 @@ dropbox &
 
 # Side shortcuts for file managers
 xdg-user-dirs-gtk-update &
+
