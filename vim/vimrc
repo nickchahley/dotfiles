@@ -4,10 +4,10 @@
 " 	Local vim dir $VIMHOME = ~/.vim/  (nix), ~\vimfiles (win)
 " }}}
 " {{{ Remap Leader before we use it for anything else
-let mapleader = "\<Space>"
-" Keep \ leader b/h b/c it still confuses me sometimes. Hopefully tmp
-nmap \ <Leader>
-vmap \ <Leader>
+	let mapleader = "\<Space>"
+	" Keep \ leader b/h b/c it still confuses me sometimes. Hopefully tmp
+	nmap \ <Leader>
+	vmap \ <Leader>
 " }}}
 " {{{ Vim directory as a variable on unix/win
 if has('win32') || has('win64')
@@ -63,19 +63,15 @@ endif
 	Plugin 'vim-airline/vim-airline'
 	Plugin 'vim-airline/vim-airline-themes'
 	Plugin 'ryanoasis/vim-devicons'
-
 	Plugin 'skielbasa/vim-material-monokai'
 	Plugin 'jacoborus/tender.vim'
-	Plugin 'arcticicestudio/nord-vim'
-	Plugin 'crusoexia/vim-monokai'
 	Plugin 'crusoexia/vim-dracula'
 	Plugin 'crusoexia/vim-dream'  
 
-	" Writing prose suite 
+	" Writing prose 
 	Plugin 'junegunn/goyo.vim'
 	Plugin 'junegunn/limelight.vim' 
 	Plugin 'dbmrq/vim-redacted'
-	Plugin 'reedes/vim-wordy' " be critical of the language I use
 	" }}}
 " End call {{{
 	" All of your Plugins must be added before the following line
@@ -174,18 +170,6 @@ endif
 		let g:materialmonokai_italic = 0
 		let g:airline_theme = 'materialmonokaiedit'
 	" }}}
-	" tagbar config {{{
-		let g:tagbar_map_togglecaseinsensitive = "u" 
-		let g:tagbar_map_togglefold = 'ja' 
-		let g:tagbar_map_openfold = ['+', '<kPlus>', 'jo']
-		let g:tagbar_map_closefold = ['-', '<kMinus>', 'jc']
-		let g:tagbar_map_openallfolds = ['*', '<kMultiply>', 'jR']
-		let g:tagbar_map_closeallfolds = ['=', 'jM'] 
-		let g:tagbar_map_incrementfolds = 'jr'
-		let g:tagbar_map_decrementfolds = 'jm'
-		let g:tagbar_map_nextfold = 'je' "from 'zj' (z<down>)
-		let g:tagbar_map_prevfold = 'ji' 
-	" }}}
 	" Airline {{{
 		let g:airline#extensions#tabline#enabled    = 1
 		let g:airline#extensions#whitespace#enabled = 0
@@ -195,11 +179,10 @@ endif
 
 	" }}}
 	" Simplenote config {{{
-		source ~/.vim/simplenoterc
+		source $VIMHOME/simplenoterc
 		let g:SimplenoteFiletype = "markdown"
 		" Single window mode
 		let g:SimplenoteSingleWindow = 1
-
 		" open :SimplenoteList either a vs or hs (def) split
 		"let g:SimplenoteVertical = 0
 		" set scratch buffer to X lines tall. Which ones is the scratch buffer?
@@ -222,6 +205,7 @@ endif
 		
 		set guifont=Iosevka\ Term\ Medium:h11
 		"set guifont=Source\ Code\ Pro\ for\ Powerline\ Medium\ 10
+
 	else 
 		" This is console Vim.
 		set noeb vb t_vb= " Disable error bell (vim only)
@@ -237,6 +221,7 @@ endif
 		let &t_SI = "\<Esc>[5 q"
 		let &t_SR = "\<Esc>[3 q"
 		let &t_EI = "\<Esc>[1 q"
+
 	endif
 " }}}
 " {{{ General Configuration

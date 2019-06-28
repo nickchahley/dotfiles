@@ -99,3 +99,9 @@ eval $(thefuck --alias)
 
 # Use ripgrep for fzf
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+
+# Use vim as the manpager (requires vim-manpager)
+export MANPAGER="nvim -c MANPAGER -"
+
+# Terminal bookmarks
+source ~/.local/bin/bourne-apparish

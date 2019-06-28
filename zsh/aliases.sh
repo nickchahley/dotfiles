@@ -1,14 +1,14 @@
 ### nikoli shell aliases
-
+alias aur_packages='yay -Qme'     # pacman -Qme also works
+alias aur_dependencies='yay -Qmd' # pacman -Qmd also works
+alias aur_packages_all='yay -Qm'  # pacman -Qm also works
 alias pubip='curl ifconfig.me'
 alias prename='perl-rename'
 alias runs='cd /home/nikoli/cbsdeep/runs/denoising2D'
 alias csb='cd "/home/nikoli/.miniconda3/envs/cbsdeep/lib/python3.6/site-packages/csbdeep"'
 #alias thefuck='fuck'
 alias tb='tensorboard --logdir'
-
-# Muscle memory is still vim
-alias vim='nvim'
+alias vim='nvim' # Muscle memory is still vim
 
 alias p='"/home/nikoli/Clone/McGill/Courses/COMP 551/Project 4/COMP551-MP4.git"'
 alias slab='cd "/run/media/nikoli/Slab"'
@@ -68,11 +68,11 @@ alias lableft="xrandr --output DP-1 --mode 1920x1080 --scale 2x2 --pos 0x0 --out
 
 # Nouveau Riche
 alias scrot='scrot --select'
-# alias p='phoronix-test-suites'
 alias mu='mupdf'
 alias fehf='feh --bg-fill'
 alias feht='feh --bg-tile'
 alias rsync='rsync --info=progress2'
+alias rsync_changes='rsync --info=progress2 --delete -r'
 alias isudo='sudo -i'
 alias duh='du -h'
 alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
@@ -105,7 +105,7 @@ alias pablue='paswitch blue'
 # Editing text out of Vim are sad times.
 #alias vim-anywhere='~/.vim-anywhere/bin/run'
 
-# Copy and Paste Output of Command {{{
+# Xclip: pipe output to clipboards {{{
 	#		`v` executes v cmd first and then substitutes it in place
 	#		ex:  
 	#			pwd | c
@@ -157,27 +157,6 @@ alias pablue='paswitch blue'
 	alias lsr="cd ~/.local/src"
 	alias cbin="cd ~/.local/bin/cx"
 	## Programming idioms and boilerplate templates
-	## secondary drive (slab)
-	alias vid='cd ~/Slab/Videos/'
-	alias pics='cd ~/Slab/Pictures/'
-	alias food='cd ~/Slab/Documents/Recipes/'
-  alias emu='cd ~/Slab/Emulation/'
-	alias droid='cd /home/nikoli/Slab/Android'
-	alias kstm='cd /home/nikoli/Slab/Android/Kustom'
-	## slab/doc
-	alias doc='cd ~/Slab/Documents/'
-	alias admin='cd ~/Slab/Documents/Admin/'
-	alias money='cd ~/Slab/Documents/Admin/Financial/'
-	alias rbc='cd ~/Slab/Documents/Admin/Financial/RBC'
-	alias tax='cd ~/Slab/Documents/Admin/Financial/Tax'
-	alias house='cd ~/Slab/Documents/Admin/Apartment'
-	alias qc='cd ~/Slab/Documents/Admin/GOVT/Quebec'
-	alias bike='cd ~/Slab/Documents/Sport/Bike/'
-	alias bikes='cd ~/Slab/Documents/Bike/My\ Bikes/'
-	alias mcgill='cd ~/Clone/School/McGill'
-  alias djg='cd ~/Clone/McGill/DJGroup'
-  alias lab='cd ~/Clone/McGill/DJGroup'
-  alias ipn='cd ~/Clone/McGill/IPN'
 # }}}
 # Edit shell config files {{{
 	alias aliases='vim ~/.config/zsh/aliases.sh && source ~/.config/zsh/aliases.sh'
