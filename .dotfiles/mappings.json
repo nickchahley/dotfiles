@@ -14,6 +14,7 @@
 	"vim/syntax": "~/.config/nvim/syntax",
 	"vim/material-monokai-edit.vim": "~/.config/nvim/colors/material-monokai-edit.vim",
 	"vim/materialmonokaiedit-airline.vim": "~/.config/nvim/autoload/airline/themes/materialmonokaiedit.vim",
+	"vim/plugins.vim":"~/.config/nvim/plugins.vim",
 	"vim/spell": "~/.vim/spell",
 	"fortunes": "~/.config/fortunes/",
 	"zsh/themes": "~/.config/zsh/oh-my-zsh/themes/",
