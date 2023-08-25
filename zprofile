@@ -1,4 +1,7 @@
 # Zsh runs ~/.zprofile, not ~/.profile, when it is invoked as a login shell. The
 # reason is that zsh has enough incompatibilities with standard shells to break
 # scripts. So we will source ~/.profile in sh emulation mode
-# emulate sh -c '~/.profile'
+emulate sh -c '~/.profile'
+#. "$HOME/.cargo/env"
+#WORKSPACE=/mnt/c/Users/nikoli/Simmunome/Workspace
+#DATA=/mnt/c/Users/nikoli/Simmunome/Data

@@ -1,63 +1,23 @@
 ### nikoli shell aliases
+alias whichdistro='lsb_release -a'
+alias pubip='curl ifconfig.me'
+alias prename='perl-rename'
+#alias thefuck='fuck'
+alias vim='nvim' # Muscle memory is still vim
+alias cvim='~/.config/nvim'
+
+# AUR
 alias aur_packages='yay -Qme'     # pacman -Qme also works
 alias aur_dependencies='yay -Qmd' # pacman -Qmd also works
 alias aur_packages_all='yay -Qm'  # pacman -Qm also works
-alias pubip='curl ifconfig.me'
-alias prename='perl-rename'
-alias runs='cd /home/nikoli/cbsdeep/runs/denoising2D'
-alias csb='cd "/home/nikoli/.miniconda3/envs/cbsdeep/lib/python3.6/site-packages/csbdeep"'
-#alias thefuck='fuck'
-alias tb='tensorboard --logdir'
-alias vim='nvim' # Muscle memory is still vim
-
-alias p='"/home/nikoli/Clone/McGill/Courses/COMP 551/Project 4/COMP551-MP4.git"'
-alias slab='cd "/run/media/nikoli/Slab"'
-alias anno='"/home/nikoli/OneDrive/McGill/DJGroup/CTC/data/master/2018-06-18 - Received CTC Images/2016-12-15 - Sample #8122/A - low porosity 8 um filter"'
-alias overlay='cd "/home/nikoli/Clone/McGill/DJGroup/CTC/ctc-scripts/git/imagej-overlay-annotation"'
-alias fijid='"/home/nikoli/OneDrive/FIJI/Fiji.app/macros"'
 
 # Git
-	# copy the hash of the previous commit to system clipboard
-	alias lastci='git rev-parse --short HEAD | xclip -selection clipboard; echo SHA of last commit copied to clipboard'
-	alias editlastci='git rebase -i $(git rev-parse HEAD)'
+# copy the hash of the previous commit to system clipboard
+alias lastci='git rev-parse --short HEAD | xclip -selection clipboard; echo SHA of last commit copied to clipboard'
+alias editlastci='git rebase -i $(git rev-parse HEAD)'
 
-# School {{{
-	alias mgvpn='sudo openconnect securevpn.mcgill.ca -U nicholas.chahley@mail.mcgill.ca'
-	alias mun='echo nicholas.chahley@mail.mcgill.ca | xclip -selection clipboard; echo McGill username copied to clipboard'
-	alias mvpn='sudo openconnect securevpn.mcgill.ca'
-	alias flow='cd /home/nikoli/Clone/McGill/Workflow'
-	alias comp='cd /home/nikoli/Clone/McGill/Courses/COMP\ 551'
-	alias bmde='cd /home/nikoli/Clone/McGill/Courses/Fall\ 2018/BMDE\ 508'
-	alias neur='cd /home/nikoli/Clone/McGill/Courses/Fall\ 2018/NEUR\ 630'
-	alias lit='cd /home/nikoli/Clone/McGill/DJGroup/Literature'
-	alias util='cd /home/nikoli/Clone/McGill/DJGroup/CTC/ctc-scripts/utility'
-	alias cdat='cd /home/nikoli/Clone/McGill/DJGroup/CTC/ctc-scripts/data/master'
-	alias lab='cd /home/nikoli/Clone/McGill/DJGroup'
-	alias thesis='cd /home/nikoli/Clone/McGill/DJGroup/Thesis'
-	alias ml='cd /home/nikoli/Clone/McGill/DJGroup/CTC/ctc-scripts/machine_learning'
-	alias mltl='cd /home/nikoli/Clone/McGill/DJGroup/CTC/ctc-scripts/machine_learning/Transfer-Learning'
-	alias ctc='cd /home/nikoli/Clone/McGill/DJGroup/CTC/ctc-scripts/git'
-	alias sanifiles='/home/nikoli/Clone/McGill/DJGroup/CTC/ctc-scripts/preprocessing/sanitize_filenames.py'
-
-	# big tmp but not tmp
-	alias mgid='echo 260865097 | xclip -selection clipboard; echo McGill ID copied to clipboard'
-# }}}
-# Conda {{{
-	alias sa='source activate'
-	alias sd='conda deactivate'
-
-	alias cni='conda install'
-	alias cniy='conda install -y'
-	alias cns='conda search'
-	alias cnl='conda list'
-# }}}
-alias onedrive="onedrive --enable-logging"
-alias proto="STEAM_COMPAT_DATA_PATH=~/.proton python2 ~/.local/share/Steam/steamapps/common/Proton\ 3.7/proton run"
-alias pb='cd ~/.config/polybar'
-alias desktop='cd ~/.local/share/applications'
-alias fiji='cd /home/nikoli/Clone/FIJI/Fiji.app'
-alias m4='cd /home/nikoli/.themes/Adapta-Openbox-Mystery4/openbox-3'
-alias vimaft='cd ~/.vim/after/ftplugin'
+# big tmp but not tmp
+alias mgid='echo 260865097 | xclip -selection clipboard; echo McGill ID copied to clipboard'
 
 # xrandr
 alias screen_ds="xrandr --output eDP-1 --scale 0.83x0.83"
@@ -78,14 +38,9 @@ alias duh='du -h'
 alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias whatmyip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias findi='find -iname' 
-alias fg='find * -regextype egrep -regex'
+alias fgre'find * -regextype egrep -regex'
 alias onlysplitlines="IFS=$'\n'"
 alias osl="IFS=$'\n'"
-
-# Firefox
-alias ffd='cd ~/.mozilla/firefox'
-alias ffc='cd /home/nikoli/.mozilla/firefox/iliy032i.custom/chrome'
-alias ffclear='\rm ~/.cache/mozilla/firefox/iliy032i.custom/startupCache/*'
 
 # Dualshock 4
 alias ds4='ds4drv --hidraw --led 000000'

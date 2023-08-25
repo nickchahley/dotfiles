@@ -18,11 +18,15 @@
 	aa = add -A
 	ci = commit
 	co = checkout
+	br = branch
+	unstage = restore --staged
+	un = restore --staged
+	u = restore --staged
+	ua = restore --staged .
 	d = diff
 	df = diff-files
 	di = diff-index
 	dt = diff-tree
-	br = branch
 	me = merge --no-ff
 	menc = merge --no-commit --no-ff
 	meff = merge --ff-only
@@ -81,3 +85,6 @@
 	# I don't remember why I'm using the patience algo
 	tool = vimdiff
 	algorithm = patience
+
+[init]
+	defaultBranch = main

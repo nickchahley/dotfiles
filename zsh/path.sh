@@ -17,4 +17,4 @@ fi
 
 # Python/Conda Path Config -- don't delete this, you Melvin
 export PATH="/home/nikoli/.miniconda3/bin:$PATH"
-alias python3='~/.miniconda3/bin/python'
+# alias python3='~/.miniconda3/bin/python'

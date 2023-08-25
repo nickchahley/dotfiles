@@ -1,5 +1,6 @@
 {
 	"dotfiles": "~/.local/bin/dotfiles",
+	"tmux.conf": "~/.tmux.conf",
 	"i3config": "~/.config/i3/config",
 	"nvim/init.vim": "~/.config/nvim/init.vim",
 	"vim/vimrc": "~/.vim/vimrc",
