@@ -127,6 +127,8 @@ if [ -f ~/.local/bin/bourne-apparish ]; then
 	source ~/.local/bin/bourne-apparish
 fi
 
+## FZF
+
 # Added by .fzf/install; see .fzf/uninstall for removal
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 if [[ -f /usr/share/autojump/autojump.zsh ]]; then
@@ -137,3 +139,36 @@ fi
 if [[ -n rg ]]; then
 	export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
 fi
+
+# want to be able to fuzzy search file contents
+# using ripgrep combined with preview
+# find-in-file - usage: fif <searchTerm>
+fif() {
+  if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
+  rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' --preview-window='70%:wrap' || rg --ignore-case --pretty --context 10 '$1' {}"
+}
+
+
+rga-fzf() {
+	RG_PREFIX="rga --files-with-matches"
+	local file
+	file="$(
+		FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+			fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
+				--phony -q "$1" \
+				--bind "change:reload:$RG_PREFIX {q}" \
+				--preview-window="70%:wrap"
+	)" &&
+	echo "opening $file" &&
+	xdg-open "$file"
+}
+
+# alternative using ripgrep-all (rga) combined with fzf-tmux preview
+# implementation below makes use of "open" on macOS, which can be replaced by other commands if needed.
+# allows to search in PDFs, E-Books, Office documents, zip, tar.gz, etc. (see https://github.com/phiresky/ripgrep-all)
+# find-in-file - usage: fif <searchTerm> or fif "string with spaces" or fif "regex"
+# fif() {
+#     if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
+#     local file
+#     file="$(rga --max-count=1 --ignore-case --files-with-matches --no-messages "$@" | fzf-tmux +m --preview="rga --ignore-case --pretty --context 10 '"$@"' {}")" && open "$file"
+# }
