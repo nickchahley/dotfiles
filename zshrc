@@ -108,13 +108,6 @@ source $ZSH/oh-my-zsh.sh
 # dotfiles link management
 export DOTFILES_REPO_PATH="$HOME/dotfiles"
 
-# let rclone browser open terminals
-export TERMINAL="/usr/bin/terminator"
-
-# Source this even though it's in profile since something about that setup
-# doesn't work
-source ~/.config/zsh/path.sh
-
 # thefuck config
 # toggleable b/c can be slow sometimes
 # NTS: if [ false ]; and if [ 0 ] actually return true

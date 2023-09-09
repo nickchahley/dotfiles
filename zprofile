@@ -2,6 +2,8 @@
 # reason is that zsh has enough incompatibilities with standard shells to break
 # scripts. So we will source ~/.profile in sh emulation mode
 emulate sh -c '~/.profile'
-#. "$HOME/.cargo/env"
-#WORKSPACE=/mnt/c/Users/nikoli/Simmunome/Workspace
-#DATA=/mnt/c/Users/nikoli/Simmunome/Data
+
+# don't know why this is not working even though it is in profile
+if [ -d "$HOME/.local/bin" ] ; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
