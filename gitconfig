@@ -48,7 +48,7 @@
 
 	# Show merge statistics after merge.
 	stat = true
-	tool = "vimdiff"
+	tool = "nvimdiff"
 	conflictstyle = diff3
 
 [branch]
@@ -83,7 +83,7 @@
 
 [diff]
 	# I don't remember why I'm using the patience algo
-	tool = vimdiff
+	tool = nvimdiff
 	algorithm = patience
 
 [init]
