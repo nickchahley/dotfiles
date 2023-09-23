@@ -1,6 +1,32 @@
-### Hello zsh config file
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Make terminal feel like home again
+if [ "$(command -v fortune)" ]; then
+    alias fortune='fortune ~/.config/fortunes/nikoli'
+    fortune ~/.config/fortunes/nikoli
+fi
+
+# Hello zsh config file
 export ZSHCONFIG=$HOME/.config/zsh
-export ZSHPLUGINS=$ZSHCONFIG/plugins
+
+# Use vim as the manpager (requires vim-manpager)
+export MANPAGER="nvim -c MANPAGER -"
+
+# Path to aliases file 
+if [ -f ~/.aliases.sh ]; then
+    source ~/.aliases.sh
+fi
+if [ -f $ZSHCONFIG/aliases.sh ]; then
+	source $ZSHCONFIG/aliases.sh
+fi
+
+# dotfiles link management
+export DOTFILES_REPO_PATH="$HOME/.dotfiles"
 
 # Enable extglob pattern recognition
 setopt extendedglob
@@ -22,91 +48,29 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 # Auto insert next character for first possible match 
 #setopt menu_complete
 
+# zsh plugin manager
+ZNAPDIR=~/.local/repos/znap/
+[[ -r $ZNAPDIR/znap.zsh ]] ||
+    git clone --depth 1 -- \
+        https://github.com/marlonrichert/zsh-snap.git $ZNAPDIR 
+source $ZNAPDIR/znap.zsh
 
-## User plugins (trying to slowly move away from oh-my-zsh
-
+znap source romkatv/powerlevel10k
+znap source zsh-users/zsh-autosuggestions
 # Syntax hilighting "source as last plugin"
-source $ZSHPLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-
-## The following lines were added by compinstall
-# zstyle :compinstall filename '/home/nikoli/.zshrc'
-# autoload -Uz compinit
-# compinit
-## End of lines added by compinstall
-
+znap source zsh-users/zsh-syntax-highlighting
 
 # Enable 256 color support for applications
-# somehow this allows for truecolor in vim
 if [ "$TERM" = "xterm" ]
 then
     export TERM=xterm-256color
 fi
 
-# Path to aliases file 
-if [ -f ~/.aliases.sh ]; then
-    source ~/.aliases.sh
-fi
-if [ -f $ZSHCONFIG/aliases.sh ]; then
-	source $ZSHCONFIG/aliases.sh
-fi
-# Machine local aliases (untracked by git)
-if [ -f $ZSHCONFIG/aliases.local.sh ]; then
-	source $ZSHCONFIG/aliases.local.sh
-fi
-
-# Make terminal feel like home again
-if [ "$(command -v fortune)" ]; then
-    alias fortune='fortune ~/.config/fortunes/nikoli'
-    fortune ~/.config/fortunes/nikoli
-fi
-
 # `dircolors` prints out `LS_COLORS='...'; export LS_COLORS`, so eval'ing
 # $(dircolors) effectively sets the LS_COLORS environment variable.
-eval "$(dircolors /home/nikoli/.config/zsh/dircolors/dircolors.edit1)" 
-
-# Put conda stuff before the prompt in case prompt wants to use that
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/nikoli/.miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/nikoli/.miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/nikoli/.miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/nikoli/.miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-## oh-my-zsh options {{{
-#Path to your *oh-my-zsh* installation
-# $ZSH is really $OHMYZSH
-export ZSH=$ZSHCONFIG/oh-my-zsh
-
-# Hypen-insensitive completion
-# Case sensitive completion must be off. _ and - will be interchangeable.
-HYPHEN_INSENSITIVE="true"
-
-## Prompt / Theme --diff b/t the two?
-# Enable prompt themes
-autoload -Uz promptinit && promptinit
-
-ZSH_THEME="pure-two"
-
-# Make sure this goes after prompt config, else no fancy prompt
-# .config is kinda a nightmare, but is there a better place for this?
-source $ZSH/oh-my-zsh.sh
-
-## end oh-my-zsh options }}}
-
+# eval "$(dircolors /home/nikoli/.config/zsh/dircolors/dircolors.edit1)" 
 # Check for .envrc file before every prompt
 #eval "$(direnv hook zsh)"
-
-# dotfiles link management
-export DOTFILES_REPO_PATH="$HOME/dotfiles"
 
 # thefuck config
 # toggleable b/c can be slow sometimes
@@ -117,10 +81,6 @@ if false; then
 	unsetopt correct_all
 	eval $(thefuck --alias --enable-experimental-instant-mode)
 fi
-
-
-# Use vim as the manpager (requires vim-manpager)
-export MANPAGER="nvim -c MANPAGER -"
 
 # Terminal bookmarks
 if [ -f ~/.local/bin/bourne-apparish ]; then
@@ -148,7 +108,6 @@ fif() {
   rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' --preview-window='70%:wrap' || rg --ignore-case --pretty --context 10 '$1' {}"
 }
 
-
 rga-fzf() {
 	RG_PREFIX="rga --files-with-matches"
 	local file
@@ -172,3 +131,6 @@ rga-fzf() {
 #     local file
 #     file="$(rga --max-count=1 --ignore-case --files-with-matches --no-messages "$@" | fzf-tmux +m --preview="rga --ignore-case --pretty --context 10 '"$@"' {}")" && open "$file"
 # }
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
