@@ -5,25 +5,55 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Make terminal feel like home again
+# Make terminal feel like home
 if [ "$(command -v fortune)" ]; then
-    alias fortune='fortune ~/.config/fortunes/nikoli'
-    fortune ~/.config/fortunes/nikoli
+    fortune $HOME/.config/fortunes/nikoli
+    alias fortune='fortune $HOME/.config/fortunes/nikoli'
 fi
 
-# Hello zsh config file
-export ZSHCONFIG=$HOME/.config/zsh
+# zsh plugin manager
+ZNAPDIR=$HOME/.local/repos/znap/
+[[ -r $ZNAPDIR/znap.zsh ]] ||
+	git clone --depth 1 -- \
+			https://github.com/marlonrichert/zsh-snap.git $ZNAPDIR 
+source $ZNAPDIR/znap.zsh
+
+# source will both clone and start a plugin
+znap source romkatv/powerlevel10k
+znap source zsh-users/zsh-autosuggestions
+# Syntax hilighting "source as last plugin"
+znap source zsh-users/zsh-syntax-highlighting
+
+# Precaution incase XDG_CONFIG_HOME is unset? What is wrong with me?
+export ZSHCONFIG=${XDG_CONFIG_HOME:=$HOME/.config}/zsh
+[ -f $HOME/.aliases.sh ] && source $HOME/.aliases.sh
+[ -f $ZSHCONFIG/aliases.sh ] && source $ZSHCONFIG/aliases.sh
+
+# Enable 256 color support for applications
+# I have never actually used xterm, I really don't understand the whole $TERM
+# variable thing. Confusion peaked when I read about people going through steps
+# to be able to set/use $TERM="alacritty" --what are the reasons for doing that?
+[ "$TERM" = "xterm" ] && export TERM=xterm-256color
+
+# `dircolors` prints out `LS_COLORS='...'; export LS_COLORS`, so eval'ing
+# $(dircolors) effectively sets the LS_COLORS environment variable.
+# DIRCOLORSFILE=$HOME/.dircolors
+# DIRCOLORSFILE="$ZSHCONFIG/dircolors/dircolors.edit1"
+# eval "$(dircolors /home/nikoli/.config/zsh/dircolors/dircolors.edit1)" 
+
+# Apply the bash default aliases for ls and grep 
+alias ls='ls --color=auto'
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
 
 # Use vim as the manpager (requires vim-manpager)
 export MANPAGER="nvim -c MANPAGER -"
-
-# Path to aliases file 
-if [ -f ~/.aliases.sh ]; then
-    source ~/.aliases.sh
-fi
-if [ -f $ZSHCONFIG/aliases.sh ]; then
-	source $ZSHCONFIG/aliases.sh
-fi
 
 # dotfiles link management
 export DOTFILES_REPO_PATH="$HOME/.dotfiles"
@@ -48,27 +78,6 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 # Auto insert next character for first possible match 
 #setopt menu_complete
 
-# zsh plugin manager
-ZNAPDIR=~/.local/repos/znap/
-[[ -r $ZNAPDIR/znap.zsh ]] ||
-    git clone --depth 1 -- \
-        https://github.com/marlonrichert/zsh-snap.git $ZNAPDIR 
-source $ZNAPDIR/znap.zsh
-
-znap source romkatv/powerlevel10k
-znap source zsh-users/zsh-autosuggestions
-# Syntax hilighting "source as last plugin"
-znap source zsh-users/zsh-syntax-highlighting
-
-# Enable 256 color support for applications
-if [ "$TERM" = "xterm" ]
-then
-    export TERM=xterm-256color
-fi
-
-# `dircolors` prints out `LS_COLORS='...'; export LS_COLORS`, so eval'ing
-# $(dircolors) effectively sets the LS_COLORS environment variable.
-# eval "$(dircolors /home/nikoli/.config/zsh/dircolors/dircolors.edit1)" 
 # Check for .envrc file before every prompt
 #eval "$(direnv hook zsh)"
 
@@ -83,32 +92,30 @@ if false; then
 fi
 
 # Terminal bookmarks
-if [ -f ~/.local/bin/bourne-apparish ]; then
-	source ~/.local/bin/bourne-apparish
+if [ -f $HOME/.local/bin/bourne-apparish ]; then
+	source $HOME/.local/bin/bourne-apparish
 fi
 
-## FZF
-
+# Fuzzy Search
 # Added by .fzf/install; see .fzf/uninstall for removal
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 if [[ -f /usr/share/autojump/autojump.zsh ]]; then
 	. /usr/share/autojump/autojump.zsh
 fi
 
 # Use ripgrep for fzf
-if [[ -n rg ]]; then
-	export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
-fi
+[[ -n rg ]] && export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
 
 # want to be able to fuzzy search file contents
 # using ripgrep combined with preview
-# find-in-file - usage: fif <searchTerm>
 fif() {
+	# find-in-file - usage: fif <searchTerm>
   if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
   rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' --preview-window='70%:wrap' || rg --ignore-case --pretty --context 10 '$1' {}"
 }
 
 rga-fzf() {
+	# open file after the fuzzy search of contents. Should also search pdfs, docs
 	RG_PREFIX="rga --files-with-matches"
 	local file
 	file="$(
@@ -121,6 +128,8 @@ rga-fzf() {
 	echo "opening $file" &&
 	xdg-open "$file"
 }
+alias rgafzf='rga-fzf'
+alias rgf='rga-fzf'
 
 # alternative using ripgrep-all (rga) combined with fzf-tmux preview
 # implementation below makes use of "open" on macOS, which can be replaced by other commands if needed.
@@ -132,5 +141,5 @@ rga-fzf() {
 #     file="$(rga --max-count=1 --ignore-case --files-with-matches --no-messages "$@" | fzf-tmux +m --preview="rga --ignore-case --pretty --context 10 '"$@"' {}")" && open "$file"
 # }
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# To customize prompt, run `p10k configure` or edit $HOME/.p10k.zsh.
+[[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
