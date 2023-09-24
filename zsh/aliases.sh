@@ -1,15 +1,14 @@
 ### nikoli shell aliases
+alias aliases='vim ~/.config/zsh/aliases.sh'
+alias realias='source ~/.config/zsh/aliases.sh'
 alias whichdistro='lsb_release -a'
 alias pubip='curl ifconfig.me'
 alias prename='perl-rename'
 #alias thefuck='fuck'
 alias vim='nvim' # Muscle memory is still vim
 alias cvim='~/.config/nvim'
-
-# AUR
-alias aur_packages='yay -Qme'     # pacman -Qme also works
-alias aur_dependencies='yay -Qmd' # pacman -Qmd also works
-alias aur_packages_all='yay -Qm'  # pacman -Qm also works
+alias zshrc='vim ~/.zshrc'
+alias zshpath='vim ~/.config/zsh/path.sh'
 
 # Git
 # copy the hash of the previous commit to system clipboard
@@ -57,9 +56,6 @@ alias dirs='dirs -v'
 alias pablu='paswitch blue'
 alias pablue='paswitch blue'
 
-# Editing text out of Vim are sad times.
-#alias vim-anywhere='~/.vim-anywhere/bin/run'
-
 # Xclip: pipe output to clipboards {{{
 	#		`v` executes v cmd first and then substitutes it in place
 	#		ex:  
@@ -78,6 +74,7 @@ alias pablue='paswitch blue'
 	alias cdc='cd "`xclip -o`"'
 	alias mvc='mv "`xclip -o`" ./'
 # }}}
+
 # rice {{{
 	alias pymux='pymux --truecolor'
 	alias bbre='sudo /etc/init.d/bitlbee restart'
@@ -113,18 +110,6 @@ alias pablue='paswitch blue'
 	alias cbin="cd ~/.local/bin/cx"
 	## Programming idioms and boilerplate templates
 # }}}
-# Edit shell config files {{{
-	alias aliases='vim ~/.config/zsh/aliases.sh && source ~/.config/zsh/aliases.sh'
-	alias realias='source ~/.config/zsh/aliases.sh'
-	alias zshcfg='vim ~/.config/zsh/zsh.cfg'
-	alias zshrc='vim ~/.zshrc'
-	alias zshpath='vim ~/.config/zsh/path.sh'
-	alias vimrc='vim ~/.vim/vimrc'
-	alias termcfg='vim ~/.config/terminator/config'
-	alias nvimrc='nvim ~/.config/nvim/init.vim'
-	alias ninit='nvim ~/.config/nvim/init.vim'
-	alias ci3='nvim ~/.config/i3/config'
-# }}}
 # Shell convinience aliases -- isn't that what these this whole file is? {{{
 	alias tarzip='tar -czvf'
 	alias sudoe='sudo -E'
@@ -158,65 +143,54 @@ alias pablue='paswitch blue'
 	# }}}
 	# Pacman {{{
 		# -S is for sync, makes sense
-		alias pms='sudo pacman -S'
-		alias pmsy='sudo pacman -S --noconfirm'
-		# Update/upgrade
-		alias pmsyy='sudo pacman -Syy'  # update database (apud)
-		alias pmsud='sudo pacman -Syyu' # "sync database"
-		alias pmsu='sudo pacman -Syyu'  # "sync update" (apug)
-		# -R : remove 
-		alias pmr='sudo pacman -R'      # leave dependencies installed
-		alias pmrs='sudo pacman -Rs'    # rm dependencies
-		alias pmrd='sudo pacman -Rs'    # rm dependencies
-		alias pmrsc='sudo pacman -Rsc'  # + dependent (on rm'd) pkgs
-		alias pmrall='sudo pacman -Rsc' # + dependent (on rm'd) pkgs
-		# -Q : query
-		alias pmqi='sudo pacman --query --info' # list pkg info (incl required by)
-		alias pmq='sudo pacman --query --search'
+		# alias pms='sudo pacman -S'
+		# alias pmsy='sudo pacman -S --noconfirm'
+		# # Update/upgrade
+		# alias pmsyy='sudo pacman -Syy'  # update database (apud)
+		# alias pmsud='sudo pacman -Syyu' # "sync database"
+		# alias pmsu='sudo pacman -Syyu'  # "sync update" (apug)
+		# # -R : remove 
+		# alias pmr='sudo pacman -R'      # leave dependencies installed
+		# alias pmrs='sudo pacman -Rs'    # rm dependencies
+		# alias pmrd='sudo pacman -Rs'    # rm dependencies
+		# alias pmrsc='sudo pacman -Rsc'  # + dependent (on rm'd) pkgs
+		# alias pmrall='sudo pacman -Rsc' # + dependent (on rm'd) pkgs
+		# # -Q : query
+		# alias pmqi='sudo pacman --query --info' # list pkg info (incl required by)
+		# alias pmq='sudo pacman --query --search'
 	# }}}
 	# yay : Arch User Repository package manager {{{
-		alias yays='yay -S'    # sync AUR package
-		alias yaysu='yay -Syu' # update database and upgrade
-		alias yayr='yay -Rns'  # remove AUR package
+		# alias yays='yay -S'    # sync AUR package
+		# alias yaysu='yay -Syu' # update database and upgrade
+		# alias yayr='yay -Rns'  # remove AUR package
+		# # AUR
+		# alias aur_packages='yay -Qme'     # pacman -Qme also works
+		# alias aur_dependencies='yay -Qmd' # pacman -Qmd also works
+		# alias aur_packages_all='yay -Qm'  # pacman -Qm also works
 	# }}}
-	# Ubuntu/Debian --- out of use {{{
 	# Apt {{{
-		#alias addrepo='sudo add-apt-repository'
-		#alias badrepo='sudo add-apt-repository -r'
-		#alias agud='sudo apt-get update'
-		#alias agi='sudo apt-get install'
-		#alias agis='sudo apt-get -s install'
-		#alias agiy='sudo apt-get install -y'
-		#alias agug='sudo apt-get upgrade'
-		#alias agr='sudo apt-get remove'
-		#alias agar='sudo apt-get autoremove'
-		## Search for by keywoard
-		#alias ags='apt-cache search'
-		#alias afs='apt-file search'
-		## Purge: rm package and all config files
-		#alias agrp='sudo apt-get --purge remove'
-		#alias agpr='sudo apt-get --purge remove'
-		#alias agrpy='sudo apt-get --purge remove -y'
-		#alias agpry='sudo apt-get --purge remove -y'
-	# }}}
-	# Now w/ aptitude {{{
-		#alias api='sudo aptitude install'
-		#alias apiu='sudo aptitude install --add-user-tag'
-		#alias apiuy='sudo aptitude install -y --add-user-tag'
-		#alias apiyu='sudo aptitude install -y --add-user-tag'
-		#alias apiy='sudo aptitude install -y'
-		#alias apsh='aptitude show'
-		#alias apse='aptitude search'
-		#alias apud='sudo aptitude update'
-		#alias apug='sudo aptitude safe-upgrade'
-		#alias apdug='sudo aptitude dist-upgrade'
-		#alias apr='sudo aptitude remove'
-	# }}}
+		alias addrepo='sudo add-apt-repository'
+		alias badrepo='sudo add-apt-repository -r'
+		alias agud='sudo apt update'
+		alias agi='sudo apt install'
+		alias agis='sudo apt install -s'
+		alias agiy='sudo apt install -y'
+		alias agug='sudo apt upgrade'
+		alias agr='sudo apt remove'
+		alias agar='sudo apt autoremove'
+		# search for by keywoard
+		alias agcs='apt-cache search'
+		alias agfs='apt-file search'
+		# purge: rm package and all config files
+		alias agrp='sudo apt --purge remove'
+		alias agpr='sudo apt --purge remove'
+		alias agrpy='sudo apt --purge remove -y'
+		alias agpry='sudo apt --purge remove -y'
 	# }}}
 # }}}
 	# use for dank terminal {{{
 		alias icanhas='touch'
-		alias kablamz='mkdir'
+		alias has='touch'
 		alias donotwant='rm'
 		alias dowant='cp -r'
 		alias workpls='chmod +x'
@@ -254,73 +228,10 @@ alias pablue='paswitch blue'
 	# rebuild font cache (after putting new fonts into ~/.fonts)
 	alias newfonts='fc-cache -f -v'
 # }}}
-# taskwarrior /GTD / workflow {{{
-	# We read this once but have never used it {{{
-		#tickle () {
-			#deadline=$1
-			#shift
-			#inls +tickle wait:$deadline $@
-		#}
-		## tick tuesday Put out garbage
-		## tick 2018-02-04 Drivers license apt
-		#alias tick=tickle
-		#alias think='tickle +1d'
-	# }}}
-	#alias in='task add +in' # should be okay since in is keyword, not command
-	#alias taska='task next -in'   # "All", don't include inbox.
-	#alias ta='task next -in'      # "All", don't include inbox.
-	#alias taskk='task next +next' # "Killer kroc", only show next
-	#alias tn='task next +next'
-	#
-	### too lazy to write 'pro:'
-	#task_project () {
-		## "${@:2}" all args starting from 2nd
-		#task add pro:"$1" "${@:2}"
-	#}
-	#alias taskp=task_project
-	#alias tasp=task_project
-
-	# notes/lists {{{
-		alias inls='vim workflow/in'
-		alias next='vim workflow/next_actions'
-		alias proj='vim workflow/project'
-		alias waiting='vim workflow/waiting_for'
-		alias maybe='vim workflow/maybe-someday'
-		alias trig='vim workflow/trigger'
-		alias trigger='vim workflow/trigger'
-	# }}}
-# }}}
-# Games {{{
-	# Path to steam workshop dirs
-	alias darkestshop='cd /home/nikoli/.local/share/Steam/steamapps/workshop/content/262060'
-	# launch stardew valley thru mod API -- allows UI shortcuts, etc
-	alias stardew='cd /home/nikoli/.local/share/Steam/steamapps/common/Stardew\ Valley'
-	alias runstardew='~/.local/share/Steam/steamapps/common/Stardew\ Valley/StardewModdingAPI.bin.x86_64'
-	alias ddworkshop='/home/nikoli/.local/share/Steam/steamapps/workshop/content/262060'
-	alias ddbig='/home/nikoli/.local/share/Steam/steamapps/workshop/content/262060/962313079/campaign/town/buildings/stage_coach'
-# }}}
 # Executables {{{
 	alias mp='setsid mupdf'
 	alias ok='setsid okular'
 	alias xo='xdg-open'
-	## tex engines
-	alias ltex='pdflatex'
-	alias xtex='xelatex'
-	# bullshit I wrote
-	alias wish='~/.local/bin/wishlist.py'
-	alias sp='~/.local/bin/quick_spellcheck.sh'
-	# Simplenote / vim {{{
-		# Open gvim to simplenote list 
-		alias snl='vim -c SimplenoteList'
-		alias snls='vim -c SimplenoteList'
-# }}}
-	# iPython / Jupyter {{{
-		alias jynb='jupyter-notebook'
-		# disown and suppress output
-		alias ynb='jupyter-notebook &>/dev/null & disown'
-		# b/c matplotlib backends
-		alias ipython='ipython --profile terminal'
-	# }}}
 # }}}
 # Music {{{
 	alias tag='mid3v2' # mutagen based, id3 2.4 tags, play nice w/ scdl

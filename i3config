@@ -113,7 +113,6 @@ bindsym $altgr+asciitilde scratchpad show
 
 
 # Workspaces 
-
 # Define names for default workspaces for which we configure key bindings later
 # We use variables to avoid repeating the names in multiple places
 set $ws1 "1"

@@ -1,34 +1,15 @@
+# I remain very confused about all the profile, zprofile, bash_profile stuff.
+# Sometimes variables declared here are/not accessible in my interactive shell,
+# sometimes there is differential access between zsh and a script w/ #!/bin/bash
+# I just want to be able to have one place to sort out my PATH and still be able
+# to use multiple shells
+
 # Path and Env vars
-if [ -d "$HOME/bin" ] ; then
-    export PATH="$HOME/bin:$PATH"
-fi
-if [ -d "$HOME/.local/bin" ] ; then
-	export PATH="$HOME/.local/bin:$PATH"
-fi
-if [ -d "$HOME/.local/bin/djgroup_bin" ] ; then
-	export PATH="$HOME/.local/bin/djgroup_bin:$PATH"
-fi
-export PATH="/home/nikoli/.miniconda3/bin:$PATH"
+# if [ -d "$HOME/.local/bin" ] ; then
+# 	export PATH="$HOME/.local/bin:$PATH"
+# fi
 
 export EDITOR=/usr/bin/nvim
-export TERMINAL=/usr/bin/terminator
 
-# Want to use these to build symlinks. Could be aliases, but on WSL I have not
-# figured out how to use xclip and c/v like on linux
-WORK=/mnt/c/Users/nikoli/Simmunome
-DATA=/mnt/c/Users/nikoli/Simmunome/Data
-
-# Keyboard layout
+# Keyboard layout (X servers)
 setxkbmap -layout us -variant colemak -option "caps:escape"
-
-
-## WM Specific things??
-# Start dropbox service
-# dropbox &
-
-# PolicyKit authentication, so can launch things like gparted from rofi
-# /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-
-# Side shortcuts for file managers
-# xdg-user-dirs-gtk-update &
-
