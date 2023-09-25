@@ -3,7 +3,3 @@
 # scripts. So we will source ~/.profile in sh emulation mode
 emulate sh -c '~/.profile'
 
-# don't know why this is not working even though it is in profile
-if [ -d "$HOME/.local/bin" ] ; then
-    export PATH="$HOME/.local/bin:$PATH"
-fi

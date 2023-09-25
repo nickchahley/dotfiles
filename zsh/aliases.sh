@@ -7,8 +7,7 @@ alias prename='perl-rename'
 #alias thefuck='fuck'
 alias vim='nvim' # Muscle memory is still vim
 alias cvim='~/.config/nvim'
-alias zshrc='vim ~/.zshrc'
-alias zshpath='vim ~/.config/zsh/path.sh'
+alias swc='nvim ~/.config/sway/config'
 
 # Git
 # copy the hash of the previous commit to system clipboard
@@ -116,16 +115,13 @@ alias pablue='paswitch blue'
 	alias sudoedit='sudo -E nvim'
 	alias cp='cp -v'
 	alias mv='mv -v'
-	alias ll='ls -l'
-	alias lh='ls -a'  # Show hidden files
-	alias llh='ls -al'
-	alias lhl='ls -al'
-	alias lsd='ls -d' # List directories only (ex. lsd L*)
 	alias gwd="echo ${PWD/#$HOME/'~'}" # pwd result w/ '~'
 	alias so='source'
 	alias rpath='realpath'
 	alias rp='realpath'
 	alias rl='readlink'
+
+	alias lsd='ls -d' # List directories only (ex. lsd L*)
 # Package Management {{{
 	# dpkg {{{
 		is_installed () {
@@ -140,33 +136,6 @@ alias pablue='paswitch blue'
 		}
 		alias doihave='is_installed'
 		alias doihaves='is_installed_verbose'
-	# }}}
-	# Pacman {{{
-		# -S is for sync, makes sense
-		# alias pms='sudo pacman -S'
-		# alias pmsy='sudo pacman -S --noconfirm'
-		# # Update/upgrade
-		# alias pmsyy='sudo pacman -Syy'  # update database (apud)
-		# alias pmsud='sudo pacman -Syyu' # "sync database"
-		# alias pmsu='sudo pacman -Syyu'  # "sync update" (apug)
-		# # -R : remove 
-		# alias pmr='sudo pacman -R'      # leave dependencies installed
-		# alias pmrs='sudo pacman -Rs'    # rm dependencies
-		# alias pmrd='sudo pacman -Rs'    # rm dependencies
-		# alias pmrsc='sudo pacman -Rsc'  # + dependent (on rm'd) pkgs
-		# alias pmrall='sudo pacman -Rsc' # + dependent (on rm'd) pkgs
-		# # -Q : query
-		# alias pmqi='sudo pacman --query --info' # list pkg info (incl required by)
-		# alias pmq='sudo pacman --query --search'
-	# }}}
-	# yay : Arch User Repository package manager {{{
-		# alias yays='yay -S'    # sync AUR package
-		# alias yaysu='yay -Syu' # update database and upgrade
-		# alias yayr='yay -Rns'  # remove AUR package
-		# # AUR
-		# alias aur_packages='yay -Qme'     # pacman -Qme also works
-		# alias aur_dependencies='yay -Qmd' # pacman -Qmd also works
-		# alias aur_packages_all='yay -Qm'  # pacman -Qm also works
 	# }}}
 	# Apt {{{
 		alias addrepo='sudo add-apt-repository'
@@ -227,6 +196,7 @@ alias pablue='paswitch blue'
 	alias unidat='cat ~/linux/UnicodeCharts/UnicodeData.txt | grep -i'
 	# rebuild font cache (after putting new fonts into ~/.fonts)
 	alias newfonts='fc-cache -f -v'
+	alias buildfonts='fc-cache -f -v'
 # }}}
 # Executables {{{
 	alias mp='setsid mupdf'
@@ -247,8 +217,8 @@ alias pablue='paswitch blue'
 	alias getmus='vim ~/Music/music.get'
 
 	# cmus
+# how to do currently playing?
 	alias song="cmus-remote -C 'echo {}'" # path to currently SELECTED track
-																				# how to do currently playing?
 # }}}
 # Help me with syntax! {{{
 	alias pdfsyntax='cat ~/linux/PDF-Manipulation/pdftk/pdftk-examples'

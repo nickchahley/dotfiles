@@ -68,7 +68,10 @@ unsetopt CASE_GLOB
 setopt autocd
 
 # Share history between multiple zsh sessions
-setopt appendhistory
+HISTFILE=$ZSHCONFIG/zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt INC_APPEND_HISTORY_TIME
 
 # No beep on error, no errors if no pattern match
 unsetopt beep nomatch
