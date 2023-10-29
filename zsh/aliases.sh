@@ -62,7 +62,7 @@ alias lr="cd ~/.local/repos"
 # Terminal clipboard utilites {{{
 # `p` executes v cmd first and then substitutes it in place
 # pwd | y %% echo `p` 
-if [ $XDG_SESSION_TYPE == 'wayland' ]; then
+if [ $XDG_SESSION_TYPE = 'wayland' ]; then
 	alias y='wl-copy'                      
 	alias p='wl-paste'
 	alias lns='ln -s "`wl-paste`"'
