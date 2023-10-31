@@ -13,3 +13,9 @@ export EDITOR=/usr/bin/nvim
 
 # Keyboard layout (X servers)
 setxkbmap -layout us -variant colemak -option "caps:escape"
+
+# trying for video acceleration (really just non-laggy browsers when videos
+# playing)
+export MOZ_DISABLE_RDD_SANDBOX=1
+export MOZ_ENABLE_WAYLAND=1
+. "$HOME/.cargo/env"

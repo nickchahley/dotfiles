@@ -1,8 +1,18 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+P10K=false
+if "$P10K"; then
+	# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+	# Initialization code that may require console input (password prompts, [y/n]
+	# confirmations, etc.) must go above this block; everything else may go below.
+	if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+		source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+	fi
+	# To customize prompt, run `p10k configure` or edit $HOME/.p10k.zsh.
+	[[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
+fi
+
+## prompts, we have p10k and startship
+if ! $P10K; then
+	eval "$(starship init zsh)"
 fi
 
 # Make terminal feel like home
@@ -19,7 +29,9 @@ ZNAPDIR=$HOME/.local/repos/znap/
 source $ZNAPDIR/znap.zsh
 
 # source will both clone and start a plugin
-znap source romkatv/powerlevel10k
+if "$P10K"; then
+	znap source romkatv/powerlevel10k
+fi
 znap source zsh-users/zsh-autosuggestions
 # Syntax hilighting "source as last plugin"
 znap source zsh-users/zsh-syntax-highlighting
@@ -34,23 +46,6 @@ export ZSHCONFIG=${XDG_CONFIG_HOME:=$HOME/.config}/zsh
 # variable thing. Confusion peaked when I read about people going through steps
 # to be able to set/use $TERM="alacritty" --what are the reasons for doing that?
 [ "$TERM" = "xterm" ] && export TERM=xterm-256color
-
-# `dircolors` prints out `LS_COLORS='...'; export LS_COLORS`, so eval'ing
-# $(dircolors) effectively sets the LS_COLORS environment variable.
-# DIRCOLORSFILE=$HOME/.dircolors
-# DIRCOLORSFILE="$ZSHCONFIG/dircolors/dircolors.edit1"
-# eval "$(dircolors /home/nikoli/.config/zsh/dircolors/dircolors.edit1)" 
-
-# Apply the bash default aliases for ls and grep 
-alias ls='ls --color=auto'
-alias dir='dir --color=auto'
-alias vdir='vdir --color=auto'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
 
 # Use vim as the manpager (requires vim-manpager)
 export MANPAGER="nvim -c MANPAGER -"
@@ -144,5 +139,32 @@ alias rgf='rga-fzf'
 #     file="$(rga --max-count=1 --ignore-case --files-with-matches --no-messages "$@" | fzf-tmux +m --preview="rga --ignore-case --pretty --context 10 '"$@"' {}")" && open "$file"
 # }
 
-# To customize prompt, run `p10k configure` or edit $HOME/.p10k.zsh.
-[[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
+# Perl. IIRC installed this b/c I was planning for bio-perl, but never used
+PATH="/home/nikoli/.perl5/bin${PATH:+:${PATH}}"; export PATH;
+perl5LIB="/home/nikoli/.perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/nikoli/.perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/nikoli/.perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/nikoli/.perl5"; export PERL_MM_OPT;
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/nikoli/.miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/nikoli/.miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/nikoli/.miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/nikoli/.miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+source /home/nikoli/.config/broot/launcher/bash/br
+
+# git diff before commit
+function gg {
+    br --conf ~/.config/broot/git-diff-conf.toml --git-status
+}
+export FPATH="$REPOS/eza/completions/zsh:$FPATH"

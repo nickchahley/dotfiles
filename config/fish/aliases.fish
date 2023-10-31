@@ -1,18 +1,18 @@
 source $XDG_CONFIG_HOME/aliases.sh
-alias raz='source ~/.config/zsh/aliases.sh'
-alias alz='vim ~/.config/aliases.sh && raz'
+alias raf='source ~/.config/fish/aliases.fish'
+alias alf='vim ~/.config/fish/aliases.fish && raf'
 
 # trying some replacements for default unix tools
-if [ -f "$HOME/.cargo/bin/eza" ]; then
+if test -f "$HOME/.cargo/bin/eza"
 	alias ls='eza --hyperlink'
 else
 	alias ls='ls --hyperlink=auto --color=auto'
-fi
+end
 
 # Terminal clipboard utilites {{{
 # `p` executes v cmd first and then substitutes it in place
 # pwd | y %% echo `p` 
-if [ $XDG_SESSION_TYPE = 'wayland' ]; then
+if $XDG_SESSION_TYPE = 'wayland'
 	alias y='wl-copy'                      
 	alias p='wl-paste'
 	alias lns='ln -s "`wl-paste`"'
@@ -29,7 +29,7 @@ else
 	alias cdp='cd "`xclip -o`"'
 	alias mvp='mv "`xclip -o`" ./'
 	alias ep='nvim `xclip -o`'
-fi
+end
 # }}}
 
-# vim: ft=bash: ts=2: sw=2: set nowrap:
+# vim: ft=fish: ts=2: sw=2: set nowrap:
