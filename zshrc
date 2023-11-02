@@ -162,9 +162,10 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 source /home/nikoli/.config/broot/launcher/bash/br
-
 # git diff before commit
 function gg {
     br --conf ~/.config/broot/git-diff-conf.toml --git-status
 }
+
+eval "$(zoxide init zsh)"
 export FPATH="$REPOS/eza/completions/zsh:$FPATH"

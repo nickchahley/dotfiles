@@ -21,7 +21,8 @@ if status is-interactive
 	if type -q rg
 		export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
 	end
-
+	
+	zoxide init fish | source
 	starship init fish | source
 
 end

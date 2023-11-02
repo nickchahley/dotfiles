@@ -1,6 +1,9 @@
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/bin/scripts:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+. "$HOME/.cargo/env"
+export GOPATH="$HOME/.go"
+export PATH="$GOPATH/bin:$PATH"
 
 # use this for cloning/building git repos
 export REPOS="$HOME/.local/repos"
@@ -25,4 +28,4 @@ export RANGER_LOAD_DEFAULT_RC=false
 
 # might be too lazy to run iwconfig
 export WIFICARD='wlp0s20f3'
-. "$HOME/.cargo/env"
+
