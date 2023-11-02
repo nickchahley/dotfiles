@@ -1,9 +1,12 @@
 source $XDG_CONFIG_HOME/aliases.sh
+if test -e $HOME/.aliases.sh
+	source $HOME/.aliases.sh 
+end
 alias raf='source ~/.config/fish/aliases.fish'
 alias alf='vim ~/.config/fish/aliases.fish && raf'
 
 # trying some replacements for default unix tools
-if test -f "$HOME/.cargo/bin/eza"
+if test -e "$HOME/.cargo/bin/eza"
 	alias ls='eza --hyperlink'
 else
 	alias ls='ls --hyperlink=auto --color=auto'
