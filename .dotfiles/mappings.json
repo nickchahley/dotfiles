@@ -15,6 +15,7 @@
 	"zsh/path.sh": "~/.config/zsh/path.sh",
 	"zsh/aliases.sh": "~/.config/zsh/aliases.sh",
 	"tmux.conf": "~/.config/tmux/tmux.conf",
+	"tmux.conf": "~/.tmux.conf",
 	"sway/config": "~/.config/sway/config",
 	"sway/status.sh": "~/.config/sway/status.sh",
 	"sway/waybar.config": "~/.config/waybar/config",
