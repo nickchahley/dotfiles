@@ -108,7 +108,7 @@ bindsym $mod+minus move scratchpad
 bindsym $mod+plus scratchpad show
 bindsym $altgr+multiply scratchpad show
 #bindsym $altgr+questiondown scratchpad show
-bindsym $altgr+asciitilde scratchpad show
+# bindsym $altgr+asciitilde scratchpad show
 #bindsym $altgr+backslash scratchpad show
 
 

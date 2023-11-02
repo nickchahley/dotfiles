@@ -74,7 +74,7 @@ unsetopt beep nomatch
 # Case-insensitive tab completion
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 # Auto insert next character for first possible match 
-#setopt menu_complete
+# setopt menu_complete
 
 # Check for .envrc file before every prompt
 #eval "$(direnv hook zsh)"

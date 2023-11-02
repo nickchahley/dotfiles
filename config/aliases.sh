@@ -1,3 +1,21 @@
+# TODO into bin for fish compat
+
+# copy the hash of the previous commit to system clipboard
+# alias gitlastci='git rev-parse --short HEAD | xclip -selection clipboard; echo SHA of last commit copied to clipboard'
+# alias giteditlastci='git rebase -i $(git rev-parse HEAD)'
+		# is_installed () {
+		# 	dpkg -s "$@" | grep Status
+		# }
+		#
+		# is_installed_verbose () {
+		# 	for pkg in "$@"; do
+		# 		s="$(dpkg -s "$@" | grep Status )"
+		# 		echo "$pkg\t$s"
+		# 	done
+		# }
+		# alias doihave='is_installed'
+		# alias doihaves='is_installed_verbose'
+
 # Aliases set using logic are moved to respective shell's aliases file
 # ex. ~/.config/zsh/aliases.sh, ~/.config/fish/aliases.fish
 alias vim='nvim' # Muscle memory is still vim
@@ -59,28 +77,6 @@ alias repos="cd ~/.local/repos"
 alias lr="cd ~/.local/repos"
 
 
-# Git {{{
-# copy the hash of the previous commit to system clipboard
-alias gitlastci='git rev-parse --short HEAD | xclip -selection clipboard; echo SHA of last commit copied to clipboard'
-alias giteditlastci='git rebase -i $(git rev-parse HEAD)'
-# }}}
-
-# Shell convinience aliases -- isn't that what these this whole file is? {{{
-# Package Management {{{
-	# dpkg {{{
-		is_installed () {
-			dpkg -s "$@" | grep Status
-		}
-
-		is_installed_verbose () {
-			for pkg in "$@"; do
-				s="$(dpkg -s "$@" | grep Status )"
-				echo "$pkg\t$s"
-			done
-		}
-		alias doihave='is_installed'
-		alias doihaves='is_installed_verbose'
-	# }}}
 	# Apt {{{
 		alias addppa='sudo add-apt-repository'
 		alias badppa='sudo add-apt-repository -r'
@@ -115,7 +111,7 @@ alias giteditlastci='git rebase -i $(git rev-parse HEAD)'
 	# Using rm to move files to trash is like weed. It is common and pleasing but
 	# can be bad for you in the future. 
 	# \rm : bypass alias you really need to use rm
-	alias rm='echo "This is not the command you are looking for."; false'
+	# alias rm='echo "This is not the command you are looking for."; false'
 	alias tr='trash-put'
 	alias trls='trash-list'
 	alias tr-ls='trash-list'
