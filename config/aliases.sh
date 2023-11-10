@@ -50,6 +50,7 @@ alias rsync_changes='rsync --info=progress2 --delete -r'
 alias sudoe='sudo -E'
 alias sudoedit='sudo -E nvim'
 alias isudo='sudo -i'
+alias tree='tree -C'
 
 alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias whatmyip='dig +short myip.opendns.com @resolver1.opendns.com'
@@ -170,6 +171,7 @@ alias ctla4string11='ENSP00000303939'
 # https://askubuntu.com/questions/1163390/how-do-i-find-version-of-intel-graphics-card-drivers-installed
 alias videoapaters="lspci -k | grep -EA3 'VGA|3D|Display'"
 alias swaywindows='swaymsg -t get_tree | less'
+alias swayouts='swaymsg -t get_outputs'
 
 # alias ls='exa'
 # Apply the bash default aliases for ls and grep 
@@ -200,7 +202,13 @@ alias whichgtk='gsettings get org.gnome.desktop.interface gtk-theme'
 alias ggdi='gsettings get org.gnome.desktop.interface'
 alias gsdi='gsettings set org.gnome.desktop.interface'
 alias color='hyprpicker -a'
-
 alias update_starship='curl -sS https://starship.rs/install.sh | sh'
 alias disable_conda_prompt_modifier='conda config --set changeps1 False'
+alias pw='bw get password'
+alias un-'bw get username'
+alias genpw='bw generate -luns --length 14'
+alias genpp='bw generate --passphrase --words 4 --separator --includeNumber'
+alias network-connections='nmcli con show'
+alias network-scan='nmcli -p device wifi'
+alias ranger='source ranger'
 # vim: ft=bash: ts=2: sw=2: set nowrap:
