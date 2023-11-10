@@ -13,3 +13,6 @@ setxkbmap -layout us -variant colemak -option "caps:escape"
 # playing)
 export MOZ_DISABLE_RDD_SANDBOX=1
 export MOZ_ENABLE_WAYLAND=1
+
+# If running from tty1 start sway automatically
+[ "$(tty)" = "/dev/tty1" ] && exec sway
