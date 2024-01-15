@@ -1,4 +1,4 @@
-P10K=false
+P10K=true
 if "$P10K"; then
 	# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 	# Initialization code that may require console input (password prompts, [y/n]
@@ -22,9 +22,9 @@ function cd
     builtin cd "$@"
     pwd > ~/.lastdir
 }
-if [ -f ~/.lastdir ]; then
-    cd "$(cat ~/.lastdir)"
-fi
+# if [ -f ~/.lastdir ]; then
+#     cd "$(cat ~/.lastdir)"
+# fi
 
 # Make terminal feel like home
 if [ "$(command -v fortune)" ]; then
@@ -44,8 +44,20 @@ if "$P10K"; then
 	znap source romkatv/powerlevel10k
 fi
 znap source zsh-users/zsh-autosuggestions
-# Syntax hilighting "source as last plugin"
+znap source zsh-users/zsh-history-substring-search
+
+# everybody says to source syntax-highlighting as last plugin
 znap source zsh-users/zsh-syntax-highlighting
+
+# Fuzzy tab-completion matching from some person on stackexchange
+# 0 -- vanilla completion (abc => abc)
+# 1 -- smart case completion (abc => Abc)
+# 2 -- word flex completion (abc => A-big-Car)
+# 3 -- full flex completion (abc => ABraCadabra)
+zstyle ':completion:*' matcher-list '' \
+  'm:{a-z\-}={A-Z\_}' \
+  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
+  'r:|?=** m:{a-z\-}={A-Z\_}'
 
 # Precaution incase XDG_CONFIG_HOME is unset? What is wrong with me?
 export ZSHCONFIG=${XDG_CONFIG_HOME:=$HOME/.config}/zsh
@@ -81,11 +93,6 @@ setopt INC_APPEND_HISTORY_TIME
 
 # No beep on error, no errors if no pattern match
 unsetopt beep nomatch
-
-# Case-insensitive tab completion
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-# Auto insert next character for first possible match 
-# setopt menu_complete
 
 # Check for .envrc file before every prompt
 #eval "$(direnv hook zsh)"
