@@ -20,7 +20,7 @@
 	"sway/status.sh": "~/.config/sway/status.sh",
 	"sway/waybar.config": "~/.config/waybar/config",
 	"i3config": "~/.config/i3/config",
-	"alacritty.yml": "~/.config/alacritty/alacritty.yml",
+	"alacritty.toml": "~/.config/alacritty/alacritty.toml",
 	"Renviron": "~/.Renviron",
 	"config/fortunes": "~/.config/fortunes/",
 	"gitconfig": "~/.gitconfig",
