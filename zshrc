@@ -185,7 +185,7 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-source /home/nikoli/.config/broot/launcher/bash/br
+[ -f /home/nikoli/.config/broot/launcher/bash/br ] && source /home/nikoli/.config/broot/launcher/bash/br
 # git diff before commit
 function gg {
     br --conf ~/.config/broot/git-diff-conf.toml --git-status
@@ -193,7 +193,7 @@ function gg {
 
 # bitwarden cli completions these seem to slow my startup so just use bw --help
 # [ -f $HOME/.local/bin/bw ] && eval "$(bw completion --shell zsh); compdef _bw bw;"
-eval "$(zoxide init zsh)"
+[ -f /usr/bin/zoxide ] && eval "$(zoxide init zsh)"
 export FPATH="$REPOS/eza/completions/zsh:$FPATH"
 
 export NVM_DIR="$HOME/.config/nvm"

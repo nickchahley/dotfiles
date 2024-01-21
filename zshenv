@@ -2,7 +2,7 @@ export PATH="/usr/local/Qt-6.6.1/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/bin/scripts:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-. "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
 
