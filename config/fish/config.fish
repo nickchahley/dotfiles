@@ -37,3 +37,17 @@ if status is-interactive
 end
 
 # vim:set ts=2 sw=2:
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if test -f /home/nikoli/.miniconda3/bin/conda
+    eval /home/nikoli/.miniconda3/bin/conda "shell.fish" "hook" $argv | source
+else
+    if test -f "/home/nikoli/.miniconda3/etc/fish/conf.d/conda.fish"
+        . "/home/nikoli/.miniconda3/etc/fish/conf.d/conda.fish"
+    else
+        set -x PATH "/home/nikoli/.miniconda3/bin" $PATH
+    end
+end
+# <<< conda initialize <<<
+
