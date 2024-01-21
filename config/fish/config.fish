@@ -3,6 +3,15 @@
 if status is-interactive
 	source ~/.config/fish/aliases.fish
 
+	# open new terminals in previous working dir
+	function cd
+		builtin cd "$argv"
+		pwd > ~/.lastdir
+	end
+	if test -f ~/.lastdir
+		cd (cat ~/.lastdir)
+	end
+
 	if type -q fortune
 		fortune $HOME/.config/fortunes/nikoli
 		alias fortune='fortune $HOME/.config/fortunes/nikoli'
@@ -21,7 +30,8 @@ if status is-interactive
 	if type -q rg
 		export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
 	end
-
+	
+	zoxide init fish | source
 	starship init fish | source
 
 end

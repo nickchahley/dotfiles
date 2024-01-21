@@ -24,8 +24,6 @@ alias aliases='vim ~/.config/aliases.sh && realias'
 alias ra='realias'
 alias al='aliases'
 alias whichdistro='lsb_release -a'
-alias prename='perl-rename'
-alias nrename='rename -n' # Up+home+del to actually run the rename
 #alias thefuck='fuck'
 
 alias ...='cd ../../'
@@ -42,6 +40,9 @@ alias tarzip='tar -czvf'
 alias cp='cp -v'
 alias mv='mv -v'
 alias so='source'
+alias rename='rename -v'
+alias prename='perl-rename'
+alias nrename='rename -n' # Up+home+del to actually run the rename
 alias rp='realpath'
 alias rl='readlink'
 alias duh='du -h' # >> dust
@@ -50,6 +51,8 @@ alias rsync_changes='rsync --info=progress2 --delete -r'
 alias sudoe='sudo -E'
 alias sudoedit='sudo -E nvim'
 alias isudo='sudo -i'
+alias tree='tree -C'
+alias wcl='wc -l'
 
 alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias whatmyip='dig +short myip.opendns.com @resolver1.opendns.com'
@@ -170,6 +173,7 @@ alias ctla4string11='ENSP00000303939'
 # https://askubuntu.com/questions/1163390/how-do-i-find-version-of-intel-graphics-card-drivers-installed
 alias videoapaters="lspci -k | grep -EA3 'VGA|3D|Display'"
 alias swaywindows='swaymsg -t get_tree | less'
+alias swayouts='swaymsg -t get_outputs'
 
 # alias ls='exa'
 # Apply the bash default aliases for ls and grep 
@@ -192,15 +196,35 @@ alias csw='nvim ~/.config/sway'
 alias es='nvim ~/.config/sway/config'
 alias esc='vim ~/.config/sway/compatible.config'
 alias eal='nvim ~/.config/alacritty/alacritty.yml'
-alias wiki='nvim +VimwikiIndex'
-alias todo='nvim +VimwikiMakeDiaryNote'
-alias diary='nvim +VimwikiMakeDiaryNote'
+
+# want to have these also cd into the current file dir
+# cd %:p:h:pwd
+alias wiki='nvim +VimwikiIndex +cd\ %:p:h'
+alias diary='nvim +VimwikiMakeDiaryNote +cd\ %:p:h'
 
 alias whichgtk='gsettings get org.gnome.desktop.interface gtk-theme'
 alias ggdi='gsettings get org.gnome.desktop.interface'
 alias gsdi='gsettings set org.gnome.desktop.interface'
 alias color='hyprpicker -a'
-
 alias update_starship='curl -sS https://starship.rs/install.sh | sh'
 alias disable_conda_prompt_modifier='conda config --set changeps1 False'
+alias pw='bw get password'
+alias un-'bw get username'
+alias genpw='bw generate -luns --length 14'
+alias genpp='bw generate --passphrase --words 4 --separator --includeNumber'
+alias network-connections='nmcli con show'
+alias network-scan='nmcli -p device wifi'
+alias f='source ranger'
+alias ca='conda activate'
+alias cg='conda activate graphs'
+alias cap='conda activate preprocessing'
+alias cel='conda env list'
+alias amix='pavucontrol'
+
+alias xm5-on='bluetoothctl connect 88:C9:E8:4A:03:97'
+alias xm5-off='bluetoothctl disconnect 88:C9:E8:4A:03:97'
+alias xm4-on='bluetoothctl connect F8:4E:17:34:41:12'
+alias xm4-off='bluetoothctl disconnect F8:4E:17:34:41:12'
+
+alias acget='curl --cookie ~/.cookies/adventofcode.txt >> input.txt'
 # vim: ft=bash: ts=2: sw=2: set nowrap:

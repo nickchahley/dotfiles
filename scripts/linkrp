@@ -1,0 +1,6 @@
+#!/bin/bash
+# useage: linkrp <source> <target> 
+# link realpath of source to target 
+# this is basically just for linking stuff to /usr/local/bin
+SOURCE=$(realpath "$1")
+ln -sv "$SOURCE" "$2"

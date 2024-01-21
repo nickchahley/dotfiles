@@ -1,4 +1,4 @@
-P10K=false
+P10K=true
 if "$P10K"; then
 	# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 	# Initialization code that may require console input (password prompts, [y/n]
@@ -15,11 +15,24 @@ if ! $P10K; then
 	eval "$(starship init zsh)"
 fi
 
+
+## open new terminals in the last working dir
+function cd
+{
+    builtin cd "$@"
+    pwd > ~/.lastdir
+}
+# if [ -f ~/.lastdir ]; then
+#     cd "$(cat ~/.lastdir)"
+# fi
+
 # Make terminal feel like home
 if [ "$(command -v fortune)" ]; then
     fortune $HOME/.config/fortunes/nikoli
     alias fortune='fortune $HOME/.config/fortunes/nikoli'
 fi
+
+# START PLUGINS ----
 
 # zsh plugin manager
 ZNAPDIR=$HOME/.local/repos/znap/
@@ -33,8 +46,26 @@ if "$P10K"; then
 	znap source romkatv/powerlevel10k
 fi
 znap source zsh-users/zsh-autosuggestions
-# Syntax hilighting "source as last plugin"
+znap source zsh-users/zsh-history-substring-search
+
+# an alternative to simple fuzzy tab completion implemented below
+# feels a bit disruptive to my shell workflow
+# znap source Aloxaf/fzf-tab
+
+# everybody says to source syntax-highlighting as last plugin
 znap source zsh-users/zsh-syntax-highlighting
+
+# END PLUGINS ----
+
+# Fuzzy tab-completion matching from some person on stackexchange
+# 0 -- vanilla completion (abc => abc)
+# 1 -- smart case completion (abc => Abc)
+# 2 -- word flex completion (abc => A-big-Car)
+# 3 -- full flex completion (abc => ABraCadabra)
+zstyle ':completion:*' matcher-list '' \
+  'm:{a-z\-}={A-Z\_}' \
+  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
+  'r:|?=** m:{a-z\-}={A-Z\_}'
 
 # Precaution incase XDG_CONFIG_HOME is unset? What is wrong with me?
 export ZSHCONFIG=${XDG_CONFIG_HOME:=$HOME/.config}/zsh
@@ -71,11 +102,6 @@ setopt INC_APPEND_HISTORY_TIME
 # No beep on error, no errors if no pattern match
 unsetopt beep nomatch
 
-# Case-insensitive tab completion
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-# Auto insert next character for first possible match 
-# setopt menu_complete
-
 # Check for .envrc file before every prompt
 #eval "$(direnv hook zsh)"
 
@@ -87,11 +113,6 @@ if false; then
 	unsetopt correct
 	unsetopt correct_all
 	eval $(thefuck --alias --enable-experimental-instant-mode)
-fi
-
-# Terminal bookmarks
-if [ -f $HOME/.local/bin/bourne-apparish ]; then
-	source $HOME/.local/bin/bourne-apparish
 fi
 
 # Fuzzy Search
@@ -140,11 +161,14 @@ alias rgf='rga-fzf'
 # }
 
 # Perl. IIRC installed this b/c I was planning for bio-perl, but never used
-PATH="/home/nikoli/.perl5/bin${PATH:+:${PATH}}"; export PATH;
-perl5LIB="/home/nikoli/.perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/nikoli/.perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/nikoli/.perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/nikoli/.perl5"; export PERL_MM_OPT;
+# PATH="/home/nikoli/.perl5/bin${PATH:+:${PATH}}"; export PATH;
+# perl5LIB="/home/nikoli/.perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+# PERL_LOCAL_LIB_ROOT="/home/nikoli/.perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+# PERL_MB_OPT="--install_base \"/home/nikoli/.perl5\""; export PERL_MB_OPT;
+# PERL_MM_OPT="INSTALL_BASE=/home/nikoli/.perl5"; export PERL_MM_OPT;
+
+# edit and execute
+bindkey "^X^E" edit-command-line
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -162,9 +186,12 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 source /home/nikoli/.config/broot/launcher/bash/br
-
 # git diff before commit
 function gg {
     br --conf ~/.config/broot/git-diff-conf.toml --git-status
 }
+
+# bitwarden cli completions these seem to slow my startup so just use bw --help
+# [ -f $HOME/.local/bin/bw ] && eval "$(bw completion --shell zsh); compdef _bw bw;"
+eval "$(zoxide init zsh)"
 export FPATH="$REPOS/eza/completions/zsh:$FPATH"
