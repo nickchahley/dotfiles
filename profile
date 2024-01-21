@@ -10,7 +10,8 @@
 export EDITOR=/usr/bin/nvim
 
 # Keyboard layout (X servers)
-setxkbmap -layout us -variant colemak -option "caps:escape"
+# setxkbmap -layout us -variant colemak -option "caps:escape"
+setxkbmap -option "caps:escape"
 
 # trying for video acceleration (really just non-laggy browsers when videos
 # playing)
