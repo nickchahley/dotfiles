@@ -32,6 +32,8 @@ if [ "$(command -v fortune)" ]; then
     alias fortune='fortune $HOME/.config/fortunes/nikoli'
 fi
 
+# START PLUGINS ----
+
 # zsh plugin manager
 ZNAPDIR=$HOME/.local/repos/znap/
 [[ -r $ZNAPDIR/znap.zsh ]] ||
@@ -46,8 +48,14 @@ fi
 znap source zsh-users/zsh-autosuggestions
 znap source zsh-users/zsh-history-substring-search
 
+# an alternative to simple fuzzy tab completion implemented below
+# feels a bit disruptive to my shell workflow
+# znap source Aloxaf/fzf-tab
+
 # everybody says to source syntax-highlighting as last plugin
 znap source zsh-users/zsh-syntax-highlighting
+
+# END PLUGINS ----
 
 # Fuzzy tab-completion matching from some person on stackexchange
 # 0 -- vanilla completion (abc => abc)

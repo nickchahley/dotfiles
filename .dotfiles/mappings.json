@@ -21,7 +21,7 @@
 	"sway/waybar.config": "~/.config/waybar/config",
 	"i3config": "~/.config/i3/config",
 	"config/alacritty/alacritty.toml": "~/.config/alacritty/alacritty.toml",
-	"config/alacritty/themes/everforest_dark.toml": "~/.config/alacritty/themes/everforest_dark.toml",
+	"config/alacritty/themes": "~/.config/alacritty/themes",
 	"Renviron": "~/.Renviron",
 	"config/fortunes": "~/.config/fortunes/",
 	"gitconfig": "~/.gitconfig",

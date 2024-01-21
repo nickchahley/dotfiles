@@ -1,3 +1,4 @@
+export PATH="/usr/local/Qt-6.6.1/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/bin/scripts:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -5,15 +6,17 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
 
+# simmunome repos path
+export PATH="$HOME/repos:$PATH"
+
 # use this for cloning/building git repos
 export REPOS="$HOME/.local/repos"
 [ -d "$REPOS" ] || mkdir "$REPOS"
 
 # python scripts here will be accessible wherever
+# symlink packages I want access to here (ex. ranger)
 export PYTHONPATH="$HOME/.local/modules/py"
-
-# for sway-desktop-launcher
-export TERMINAL=alacritty
+# export PYTHONPATH="$HOME/.local/repos/pyqt6/pyside-setup/sources/pyside6:$PYTHONPATH"
 
 # suggested some places, see if this helps anything
 export MOZ_ENABLE_WAYLAND=1
