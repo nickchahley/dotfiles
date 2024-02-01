@@ -227,4 +227,7 @@ alias xm4-on='bluetoothctl connect F8:4E:17:34:41:12'
 alias xm4-off='bluetoothctl disconnect F8:4E:17:34:41:12'
 
 alias acget='curl --cookie ~/.cookies/adventofcode.txt >> input.txt'
+alias lc='libreoffice --calc'
+alias files='nautilus .'
+alias fil='nautilus .'
 # vim: ft=bash: ts=2: sw=2: set nowrap:

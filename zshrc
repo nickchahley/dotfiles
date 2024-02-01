@@ -128,7 +128,7 @@ fi
 # want to be able to fuzzy search file contents
 # using ripgrep combined with preview
 fif() {
-	# find-in-file - usage: fif <searchTerm>
+	# find-in-file - usage: fif <searchTerm>, `fif .` to open search for all in cwd
   if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
   rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' --preview-window='70%:wrap' || rg --ignore-case --pretty --context 10 '$1' {}"
 }
